@@ -126,7 +126,7 @@ cdef unsigned long long fast0_o2 (
         if f <= -MAX_EXP or f >= MAX_EXP:
             continue
         f = EXP_TABLE[<int>((f + MAX_EXP) * (EXP_TABLE_SIZE / MAX_EXP / 2))]
-        g = (label - f) * (_lambda)
+        g = (label - f) * _lambda
         g = g * lr
         saxpy(&size, &g, &context_embedding[row2], &ONE, work, &ONE) # work += g * negative_embeddings
         saxpy(&size, &g, &node_embedding[row1], &ONE, &context_embedding[row2], &ONE) # negative_embeddings += g * node_embedding
